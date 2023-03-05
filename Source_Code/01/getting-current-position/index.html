@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get current position</title>
+</head>
+
+<body>
+    <button id="getPosition" onclick="getLocation();">Get Position</button>
+
+    <div id="result"></div>
+
+    <script type="text/javascript">
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successfulPosition);
+            }
+            else {
+                document.getElementById("result").innerHTML = "Your browser does not support HTML5 Geolocation.";
+            }
+        }
+
+        function successfulPosition(location) {
+
+            var latitude = location.coords.latitude;
+            var longitude = location.coords.longitude;
+
+            var result = `
+                        </br>
+                        Latitude..: ${latitude} </br>
+                        Longitude..: ${longitude} </br>
+                        Altitude..: ${location.coords.altitude} </br>
+                        Accuracy..: ${location.coords.accuracy} </br>
+                        Altitude Accuracy: ${location.coords.altitudeAccuracy} </br>
+                        Direction..: ${location.coords.heading} </br>
+                        Speed..: ${location.coords.speed} </br>
+                        Time..: ${location.timestamp} </br>
+                        `;
+
+            document.getElementById("result").innerHTML = result;
+        }
+
+    </script>
+</body>
+
+</html>
