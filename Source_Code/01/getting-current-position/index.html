@@ -29,6 +29,15 @@
             var latitude = location.coords.latitude;
             var longitude = location.coords.longitude;
 
+            const options = { timeZone: 'America/Sao_Paulo' };
+
+            const timestamp = location.timestamp; // Location timestamp obtained from Geolocation API
+            const date = new Date(timestamp); // Create a new Date object using the timestamp
+
+            // Get the date and time in a readable format
+            const dateString = date.toLocaleDateString('pt-BR', options);
+            const timeString = date.toLocaleTimeString('pt-BR', options);
+
             var result = `
                         </br>
                         Latitude..: ${latitude} </br>
@@ -38,7 +47,8 @@
                         Altitude Accuracy: ${location.coords.altitudeAccuracy} </br>
                         Direction..: ${location.coords.heading} </br>
                         Speed..: ${location.coords.speed} </br>
-                        Time..: ${location.timestamp} </br>
+                        Date..: ${dateString} </br>
+                        Time..: ${timeString} </br>
                         `;
 
             document.getElementById("result").innerHTML = result;
